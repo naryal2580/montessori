@@ -1,0 +1,17 @@
+{% extends 'base_logged.html' %} {% block 'content' %}
+{% load crispy_forms_tags %}
+
+<h3>Submit Assignment</h3>
+<hr>
+<form method="POST" enctype="multipart/form-data">
+
+{% csrf_token %}
+    
+    {{form|crispy}}
+
+    <input type="submit" class="btn btn-primary mt-3" value = "Submit">
+</form>
+{% load static %}
+<script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script>
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+{% endblock 'content' %}

@@ -1,0 +1,28 @@
+{% extends 'base_logged.html' %} {% block 'content' %}
+
+
+<h2>{{assignment}} 
+ <a href="{% url 'teacher:delete_assignment' slug=assignment.slug %}" class="btn btn-danger w-25 float-right">Delete Assignment</a></h2>
+
+
+<div class="list-group">
+
+<h4 class = "text-center">Submissions</h4>
+
+  {% for sub in subs %}
+  <div class="card">
+ 
+    <div class="card-body">
+    <h3 class="card-title">{{sub.student.user.email}}</h3>
+    <p class="text-muted">{{sub.submitted_at}}</p>
+      <p>{{sub.answer_text|safe}}</p>
+      {% if sub.answer_file %}
+        <a href="{{sub.answer_file.url}}" class="btn btn-primary">Download File</a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% endfor %}
+ 
+</div>
+{% endblock 'content' %}

@@ -1,0 +1,76 @@
+{% extends 'base_logged.html' %} {% block 'content' %}
+
+<h3>{{assignment.title}}</h3>
+
+{%if messages %} {% for message in messages %}
+
+      <div class="alert {{ message.tags }}" role="alert">{{message}}</div>
+
+      {% endfor %} {% endif %}
+
+<hr />
+<p>
+  Due Date: {{assignment.due_date}} <br />
+  Given Date: {{assignment.given_date}} <br />
+  Subject : {{assignment.subject.name}}
+</p>
+<p class="my-3">{{assignment.description|safe}}</p>
+
+<hr />
+
+ {% if assignment.question_file %}
+
+<a class="btn btn-primary" href="{{assignment.question_file.url}}"
+  >Download File</a
+>
+
+{% endif %} 
+
+<div class="my-2"></div>
+
+<hr>
+
+<h3>Your Submission</h3>
+
+{% if submission %}
+
+<hr />
+Your last submission for this assignment was {{submission.submitted_at}}
+<p class="my-2">{{submission.answer_text|safe}}</p>
+<hr />
+{% if submission.answer_file %}
+
+
+<a class="btn btn-primary" href="{{submission.answer_file.url}}"
+  >Download Submission</a
+>
+
+
+
+{% endif %}
+
+
+
+<a href="{% url 'assignment:delete_submission' slug=submission.slug %}" class="btn btn-danger">Delete Submission</a>
+
+{% else %}
+
+
+{% if assignment.due_date > date %}
+
+
+
+<div class="my-3">
+  <a href="{% url 'assignment:submit_answer' question_slug=assignment.slug %}" class="btn btn-primary">Add Submission</a>
+</div>
+
+{% else %}
+
+
+<div href="#" class="alert alert-danger my-3">Submission Time Already Expired!</div>
+
+
+{% endif %}
+
+
+{% endif %} {% endblock 'content' %}

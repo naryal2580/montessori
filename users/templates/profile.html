@@ -1,0 +1,29 @@
+{% extends 'base_logged.html' %}
+
+{% block 'content' %}
+
+
+<div class="card">
+
+<div class="card-body">
+First Name: {{request.user.first_name}} <br>
+Last Name: {{request.user.last_name}} <br>
+
+{% if request.user.is_student %}
+
+Studying in: {{request.user.student.grade.name}}
+
+{% elif  request.user.is_teacher %}
+
+
+Teaching: {% for sub in request.user.teacher.subject.all %} {{sub.name}}  {% endfor %} <br>
+
+Grades : {% for grade in request.user.teacher.grade.all %} {{grade}} {% endfor %}
+
+{% endif %}
+
+</div>
+
+</div>
+
+{% endblock 'content' %}

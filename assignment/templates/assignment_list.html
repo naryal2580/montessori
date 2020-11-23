@@ -1,0 +1,16 @@
+{% extends 'base_logged.html' %} {% block 'content' %}
+<div class="list-group">
+  {% for assignment in assignments %}
+
+  <a
+    href="{% url 'assignment:details' slug=assignment.slug %}"
+    class="list-group-item list-group-item-action {% if assignment.submitted == 1 %} list-group-item-success {% endif %}"
+  >
+    <h4>{{assignment.title}}</h4>
+    
+    <div class="float-right">{{assignment.subject.name}}</div>
+  </a>
+
+  {% endfor %}
+</div>
+{% endblock 'content' %}
