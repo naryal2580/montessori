@@ -20,7 +20,7 @@
 
  {% if assignment.question_file %}
 
-<a class="btn btn-primary" href="{{assignment.question_file.url}}"
+<a class="btn btn-outline-primary" target="_blank" href="{{assignment.question_file.url}}"
   >Download File</a
 >
 
@@ -41,7 +41,7 @@ Your last submission for this assignment was {{submission.submitted_at}}
 {% if submission.answer_file %}
 
 
-<a class="btn btn-primary" href="{{submission.answer_file.url}}"
+<a class="btn btn-outline-primary" target="_blank" href="{{submission.answer_file.url}}"
   >Download Submission</a
 >
 
@@ -51,7 +51,7 @@ Your last submission for this assignment was {{submission.submitted_at}}
 
 
 
-<a href="{% url 'assignment:delete_submission' slug=submission.slug %}" class="btn btn-danger">Delete Submission</a>
+<a href="{% url 'assignment:delete_submission' slug=submission.slug %}" class="btn btn-raised btn-danger">Delete Submission</a>
 
 {% else %}
 
@@ -61,7 +61,7 @@ Your last submission for this assignment was {{submission.submitted_at}}
 
 
 <div class="my-3">
-  <a href="{% url 'assignment:submit_answer' question_slug=assignment.slug %}" class="btn btn-primary">Add Submission</a>
+  <a href="{% url 'assignment:submit_answer' question_slug=assignment.slug %}" class="btn btn-outline-primary">Add Submission</a>
 </div>
 
 {% else %}
