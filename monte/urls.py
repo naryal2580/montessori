@@ -20,10 +20,10 @@ from django.conf import settings
 from home.views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('auth', include('users.urls')),
-    path('assignment', include('assignment.urls')),
-    path('ckeditor', include('ckeditor_uploader.urls')),
-    path('teacher', include('teacher_home.urls')),
+    path('auth/', include('users.urls')),
+    path('assignment/', include('assignment.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('teacher/', include('teacher_home.urls')),
     path('', HomeView.as_view())
     
 ]
